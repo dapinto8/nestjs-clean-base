@@ -2,7 +2,7 @@ import { AuthLoginDto } from '@core/dtos/auth.dto';
 import { User } from '@core/entities/user.entity';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CryptoService } from '@services/crypto/crypto.service';
+import { CryptoService } from '@infrastructure/frameworks/crypto/crypto.service';
 import { UserService } from '@services/use-cases/user/user-service.service';
 
 @Injectable()

@@ -7,8 +7,13 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(@Req() req, @Res({ passthrough: true }) res: Response): string {
-    // res.cookie('csrfToken', req.csrfToken(), { httpOnly: true });
+  getHello(): string {
+    return this.appService.getHello();
+  }
+
+  @Get()
+  getToken(@Req() req, @Res({ passthrough: true }) res: Response): string {
+    res.cookie('csrfToken', req.csrfToken(), { httpOnly: true });
     return this.appService.getHello();
   }
 }

@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CryptoService } from './crypto.service';
+import { MemoryUserRepository } from './memory-user.repository';
 
-describe('CryptoService', () => {
-  let service: CryptoService;
+describe('MemoryUserRepository', () => {
+  let service: MemoryUserRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CryptoService],
+      providers: [MemoryUserRepository]
     }).compile();
 
-    service = module.get<CryptoService>(CryptoService);
+    service = module.get<MemoryUserRepository>(MemoryUserRepository);
   });
 
   it('should be defined', () => {

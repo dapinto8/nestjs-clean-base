@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
-import { UserServiceModule } from '@services/use-cases/user/user-service.module';
-import { CryptoModule } from '@services/crypto/crypto.module';
 import { JwtStrategy } from './jwt.strategy';
+import { CryptoModule } from '@infrastructure/frameworks/crypto/crypto.module';
+import { UserServiceModule } from '@services/use-cases/user/user-service.module';
 
 @Module({
   imports: [
@@ -19,7 +19,10 @@ import { JwtStrategy } from './jwt.strategy';
       }
     })
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [
+    AuthService,
+    JwtStrategy
+  ],
   exports: [AuthService]
 })
 export class AuthModule {}

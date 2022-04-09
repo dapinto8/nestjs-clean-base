@@ -1,14 +1,18 @@
 import { Module } from '@nestjs/common';
 import { UserRepository } from '@core/abstracts/user-repository.abstract';
-import { MemoryUserRepository } from '@infrastructure/persistence/memory/memory-user.repository';
+import { MemoryUserRepository } from './memory-user.repository';
 
 @Module({
+  exports: [
+    UserRepository, 
+    MemoryUserRepository
+  ],
   providers: [
     {
       provide: UserRepository,
       useClass: MemoryUserRepository
-    }
-  ],
-  exports: [UserRepository]
+    },
+    MemoryUserRepository
+  ]
 })
-export class DataServiceModule {}
+export class MemoryUserRepositoryModule {}

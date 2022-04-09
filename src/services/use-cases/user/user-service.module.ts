@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user-service.service';
-import { DataServiceModule } from '@services/data-service/data-service.module';
-import { CryptoModule } from '@services/crypto/crypto.module';
+import { MemoryUserRepositoryModule } from '@infrastructure/persistence/memory/memory-user-repository.module';
+import { CryptoModule } from '@infrastructure/frameworks/crypto/crypto.module';
 
 @Module({
-  imports: [DataServiceModule, CryptoModule],
+  imports: [CryptoModule, MemoryUserRepositoryModule],
   providers: [UserService],
   exports: [UserService]
 })

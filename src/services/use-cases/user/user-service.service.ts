@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserRepository } from '@core/abstracts/user-repository.abstract';
 import { User } from '@core/entities/user.entity';
 import { CreateUserDto } from '@core/dtos/user.dto';
-import { CryptoService } from '@services/crypto/crypto.service';
+import { CryptoService } from '@infrastructure/frameworks/crypto/crypto.service';
 
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
     if (userFound) {
       throw new HttpException('User already exists', HttpStatus.UNPROCESSABLE_ENTITY);
     }
-    
+
     const password = await this.cryptoService.hash(userDto.password);
     const user = new User({
       ...userDto,
@@ -31,7 +31,6 @@ export class UserService {
   }
 
   findAll(): Promise<User[]> {
-
     return this.userRepository.findAll();
   }
 }
